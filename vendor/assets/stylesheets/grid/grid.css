@@ -1,0 +1,134 @@
+/* 
+* Chubby Grid 0.1
+* By Scott Robbin and Naz Hamid (http://weightshift.com)
+* 
+* Derived from www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+*/
+    
+
+/* #Base 960 Grid 
+================================================== */
+
+    .container { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+    .column, .columns { float: left; display: inline; margin-left: 10px; margin-right: 10px; word-wrap: break-word; }
+    .row { margin-bottom: 20px; }
+    
+    /* Nested Column Classes */
+    .column.trim-left, .columns.trim-left       { margin-left: 0; }
+    .column.trim-right, .columns.trim-right     { margin-right: 0; }
+    
+    /* Base Grid */
+    .container .one.column                      { width: 60px;  }
+    .container .two.columns                     { width: 140px; }
+    .container .three.columns                   { width: 220px; }
+    .container .four.columns                    { width: 300px; }
+    .container .five.columns                    { width: 380px; }
+    .container .six.columns                     { width: 460px; }
+    .container .seven.columns                   { width: 540px; }   
+    .container .eight.columns                   { width: 620px; }
+    .container .nine.columns                    { width: 700px; }
+    .container .ten.columns                     { width: 780px; }   
+    .container .eleven.columns                  { width: 860px; }   
+    .container .twelve.columns                  { width: 940px; }
+    
+    /* Chubby Grid */
+    .container .one.chubby.column               { width: 40px; padding-left: 10px; padding-right: 10px; }
+    .container .two.chubby.columns              { width: 120px; padding-left: 10px; padding-right: 10px; }
+    .container .three.chubby.columns            { width: 200px; padding-left: 10px; padding-right: 10px; }
+    .container .four.chubby.columns             { width: 280px; padding-left: 10px; padding-right: 10px; }
+    .container .five.chubby.columns             { width: 360px; padding-left: 10px; padding-right: 10px; }
+    .container .six.chubby.columns              { width: 440px; padding-left: 10px; padding-right: 10px; }
+    .container .seven.chubby.columns            { width: 520px; padding-left: 10px; padding-right: 10px; }  
+    .container .eight.chubby.columns            { width: 600px; padding-left: 10px; padding-right: 10px; }
+    .container .nine.chubby.columns             { width: 680px; padding-left: 10px; padding-right: 10px; }
+    .container .ten.chubby.columns              { width: 760px; padding-left: 10px; padding-right: 10px; }  
+    .container .eleven.chubby.columns           { width: 840px; padding-left: 10px; padding-right: 10px; }  
+    .container .twelve.chubby.columns           { width: 920px; padding-left: 10px; padding-right: 10px; }
+    
+    /* Prefix */    
+    .container .prefix-one                      { padding-left: 80px; }
+    .container .prefix-one.chubby               { padding-left: 90px; }
+    .container .prefix-two                      { padding-left: 160px; }
+    .container .prefix-two.chubby               { padding-left: 170px; }
+    .container .prefix-three                    { padding-left: 240px; }
+    .container .prefix-three.chubby             { padding-left: 250px; }
+    .container .prefix-four                     { padding-left: 320px; }
+    .container .prefix-four.chubby              { padding-left: 330px; }
+    .container .prefix-five                     { padding-left: 400px; }
+    .container .prefix-five.chubby              { padding-left: 410px; }
+    .container .prefix-six                      { padding-left: 480px; }
+    .container .prefix-six.chubby               { padding-left: 490px; }
+    .container .prefix-seven                    { padding-left: 560px; }
+    .container .prefix-seven.chubby             { padding-left: 570px; }
+    .container .prefix-eight                    { padding-left: 640px; }
+    .container .prefix-eight.chubby             { padding-left: 650px; }
+    .container .prefix-nine                     { padding-left: 720px; }
+    .container .prefix-nine.chubby              { padding-left: 730px; }
+    .container .prefix-ten                      { padding-left: 800px; }
+    .container .prefix-ten.chubby               { padding-left: 810px; }
+    .container .prefix-eleven                   { padding-left: 880px; }
+    .container .prefix-eleven.chubby            { padding-left: 890px; }
+    
+    /* Suffix */    
+    .container .suffix-one                      { padding-right: 80px; }
+    .container .suffix-one.chubby               { padding-right: 90px; }
+    .container .suffix-two                      { padding-right: 160px; }
+    .container .suffix-two.chubby               { padding-right: 170px; }
+    .container .suffix-three                    { padding-right: 240px; }
+    .container .suffix-three.chubby             { padding-right: 250px; }
+    .container .suffix-four                     { padding-right: 320px; }
+    .container .suffix-four.chubby              { padding-right: 330px; }
+    .container .suffix-five                     { padding-right: 400px; }
+    .container .suffix-five.chubby              { padding-right: 410px; }
+    .container .suffix-six                      { padding-right: 480px; }
+    .container .suffix-six.chubby               { padding-right: 490px; }
+    .container .suffix-seven                    { padding-right: 560px; }
+    .container .suffix-seven.chubby             { padding-right: 570px; }
+    .container .suffix-eight                    { padding-right: 640px; }
+    .container .suffix-eight.chubby             { padding-right: 650px; }
+    .container .suffix-nine                     { padding-right: 720px; }
+    .container .suffix-nine.chubby              { padding-right: 730px; }
+    .container .suffix-ten                      { padding-right: 800px; }
+    .container .suffix-ten.chubby               { padding-right: 810px; }
+    .container .suffix-eleven                   { padding-right: 880px; }
+    .container .suffix-eleven.chubby            { padding-right: 890px; }
+     
+    
+/* #Clearing
+================================================== */
+
+    /* Self Clearing Goodness */
+    .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; } 
+    
+    /* Use clearfix class on parent to clear nested columns, 
+    or wrap each row of columns in a <div class="row"> */
+    .clearfix:before,
+    .clearfix:after,
+    .row:before,
+    .row:after {
+      content: '\0020';
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0; }
+    .row:after,
+    .clearfix:after {
+      clear: both; }
+    .row, 
+    .clearfix {
+      zoom: 1; }
+      
+    /* You can also use a <br class="clear" /> to clear columns */
+    .clear {
+      clear: both;
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+    
+    

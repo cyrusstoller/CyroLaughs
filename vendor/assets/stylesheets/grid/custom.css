@@ -1,0 +1,172 @@
+input[type="text"].search_box, textarea.search_box { width: 300px;}
+textarea.search_box{ height:30px;}
+input[type="checkbox"] { 
+	float:left;
+	margin-right:10px;
+}
+
+
+.header_search input{
+	margin-bottom:7px;
+}
+
+.header_search select{
+	width: 20px;
+	height: 31px;
+	display:inline;
+	margin-bottom:-10px;
+	-moz-appearance: menulist-button;
+}
+
+/* Error messages */
+
+.field_with_errors {
+/*  margin-top: 10px;*/
+/*  padding: 2px;*/
+/*  background-color: red;*/
+/*  display: table;*/
+/*	display:inline;*/
+}
+
+.field_with_errors .message {
+ 	padding-left:10px;
+	padding-right:5px;
+	display: inline;
+/*	vertical-align: top;*/
+}
+
+
+.field_with_errors label {
+/*  color: #fff; */
+	color: #f00;
+}
+
+.field_with_errors input {
+	display:inline;
+	margin:auto;
+}
+
+/* horizontal lists */
+
+li.no-bullets{
+	list-style: none;
+}
+
+ul li.square-bullets{
+	margin-left:20px;
+	list-style: square;
+	line-height:22px;
+}
+
+ul.inline li.footer-list{
+	padding-left:10px;
+	padding-right:10px;
+	display:inline;
+}
+
+ul.inline li a{
+	text-decoration:none;
+}	
+
+ul.inline li a:hover{
+	text-decoration:underline;
+}
+
+input.inline_form{
+	display:inline;
+}
+
+.inline{
+	display:inline;
+}
+
+.no-decoration{
+	text-decoration:none;
+}
+
+.no-decoration:hover{
+	text-decoration:underline;
+}
+
+#jsddm
+{	margin: 0;
+	padding: 0;
+}
+	
+	#jsddm li
+	{	float: right;
+		list-style: none;
+		margin-top:7px;
+		margin-bottom:7px;
+		/*font: 12px Tahoma, Arial*/}
+
+	#jsddm li a
+	{	display: block;
+		/*background: #20548E;*/
+		/*padding: 5px 12px;*/
+		/*text-decoration: none;*/
+		/*border-right: 1px solid white;*/
+		/*width: 70px;*/
+		/*color: #EAFFED;*/
+		white-space: nowrap}
+
+	#jsddm li a:hover
+	{	/*background: #1A4473*/}
+		
+		#jsddm li ul
+		{	margin:0;
+			margin-left:-5px;
+			padding: 0;
+			padding-bottom:7px;
+			border:5px #eee solid;
+			position: absolute;
+			visibility: hidden;
+			/*border-top: 1px solid white*/
+			background:#eee;
+			z-index:99999;}
+		
+		#jsddm li ul li
+		{	margin-bottom:0px;
+			float: none;
+			display: inherit;
+			line-height:140%;
+			text-align:left;}
+		
+		#jsddm li ul li a
+		{	width: inherit; /* auto */
+			/*background: #9F1B1B*/}
+		
+		#jsddm li ul li a:hover
+		{	/*background: #7F1616*/}
+		
+hr {
+	margin: 10px 0 10px;
+}
+
+.profile_image{
+	max-width:160px;
+	width:120%;
+	max-height:250px;
+	text-align:center;
+	border-style:solid;
+	border-color:#e3e6e6;
+	border-width:3px;
+	padding:4px;
+}
+
+.no_profile_image{
+	padding-top:40px;
+	padding-bottom:40px;
+	background-color:#e3e6e6;
+}
+
+.featured_person{
+	padding-left:10px;
+	padding-bottom:20px;
+}
+
+.left-padding-only{
+	padding-left: 20px;
+	padding-right: 0px;
+	display:inline;
+}

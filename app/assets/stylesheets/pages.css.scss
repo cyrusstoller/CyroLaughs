@@ -1,3 +1,146 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.big_button{
+	height:50px;
+	width:268px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.share_options{
+	position:relative;
+	top:-485px;
+	left:23px;
+	width:20px;
+}
+
+.share_spacing{
+	margin-bottom:7px;
+}
+
+.top-line{
+	margin-bottom:15px;
+}
+
+.action-buttons{
+	margin-top:-81px;
+}
+
+#awesome_button{
+	background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(0,255,0,.5) 0%, rgba(0,100,0,.5) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,255,0,.5)), color-stop(100%,rgba(0,100,0,.5))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,255,0,.5) 0%,rgba(0,100,0,.5) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,255,0,.5) 0%,rgba(0,100,0,.5) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,255,0,.5) 0%,rgba(0,100,0,.5) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(0,255,0,.5) 0%,rgba(0,100,0,.5) 100%); /* W3C */
+  text-shadow: 0 1px rgba(0,255,0, .75);
+
+  border: 1px solid #0a0;
+  border-top: 1px solid #0c0;
+  border-left: 1px solid #0c0;
+}
+
+#awesome_button:hover{
+	color: #222;
+  background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(0,255,0,.6) 0%, rgba(0,100,0,.6) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,255,0,.6)), color-stop(100%,rgba(0,100,0,.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,255,0,.6) 0%,rgba(0,100,0,.6) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,255,0,.6) 0%,rgba(0,100,0,.6) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,255,0,.6) 0%,rgba(0,100,0,.6) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(0,255,0,.6) 0%,rgba(0,100,0,.6) 100%); /* W3C */
+}
+
+#awesome_button:active{
+	background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(0,100,0,.6) 0%, rgba(0,255,0,.6) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,100,0,.6)), color-stop(100%,rgba(0,255,0,.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,100,0,.6) 0%,rgba(0,255,0,.6) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,100,0,.6) 0%,rgba(0,255,0,.6) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,100,0,.6) 0%,rgba(0,255,0,.6) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(0,100,0,.6) 0%,rgba(0,255,0,.6) 100%); /* W3C */
+}
+
+#meh_button{
+	background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255,255,0,.5) 0%, rgba(100,100,0,.5) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,0,.5)), color-stop(100%,rgba(100,100,0,.5))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,255,0,.5) 0%,rgba(100,100,0,.5) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,255,0,.5) 0%,rgba(100,100,0,.5) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,255,0,.5) 0%,rgba(100,100,0,.5) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(255,255,0,.5) 0%,rgba(100,100,0,.5) 100%); /* W3C */
+  text-shadow: 0 1px rgba(255,255,0, .75);
+
+  border: 1px solid #aa0;
+  border-top: 1px solid #cc0;
+  border-left: 1px solid #cc0;
+}
+
+#meh_button:hover{
+	color: #222;
+  background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255,255,0,.6) 0%, rgba(100,100,0,.6) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,0,.6)), color-stop(100%,rgba(100,100,0,.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,255,0,.6) 0%,rgba(100,100,0,.6) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,255,0,.6) 0%,rgba(100,100,0,.6) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,255,0,.6) 0%,rgba(100,100,0,.6) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(255,255,0,.6) 0%,rgba(100,100,0,.6) 100%); /* W3C */
+}
+
+#meh_button:active{
+	background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(100,100,0,.6) 0%, rgba(255,255,0,.6) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,100,0,.6)), color-stop(100%,rgba(255,255,0,.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(100,100,0,.6) 0%,rgba(255,255,0,.6) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(100,100,0,.6) 0%,rgba(255,255,0,.6) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(100,100,0,.6) 0%,rgba(255,255,0,.6) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(100,100,0,.6) 0%,rgba(255,255,0,.6) 100%); /* W3C */
+}
+
+#dislike_button{
+	background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255,0,0,.5) 0%, rgba(100,0,0,.5) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,0,0,.5)), color-stop(100%,rgba(100,0,0,.5))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,0,0,.5) 0%,rgba(100,0,0,.5) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,0,0,.5) 0%,rgba(100,0,0,.5) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,0,0,.5) 0%,rgba(100,0,0,.5) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(255,0,0,.5) 0%,rgba(100,0,0,.5) 100%); /* W3C */
+  text-shadow: 0 0px rgba(0,0,0, .75);
+
+  border: 1px solid #a00;
+  border-top: 1px solid #c00;
+  border-left: 1px solid #c00;
+}
+
+#dislike_button:hover{
+	color: #222;
+  background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255,0,0,.6) 0%, rgba(100,0,0,.6) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,0,0,.6)), color-stop(100%,rgba(100,0,0,.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,0,0,.6) 0%,rgba(100,0,0,.6) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,0,0,.6) 0%,rgba(100,0,0,.6) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,0,0,.6) 0%,rgba(100,0,0,.6) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(255,0,0,.6) 0%,rgba(100,0,0,.6) 100%); /* W3C */
+}
+
+#dislike_button:active{
+	background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(100,0,0,.6) 0%, rgba(255,0,0,.6) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,0,0,.6)), color-stop(100%,rgba(255,0,0,.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(100,0,0,.6) 0%,rgba(255,0,0,.6) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(100,0,0,.6) 0%,rgba(255,0,0,.6) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(100,0,0,.6) 0%,rgba(255,0,0,.6) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(100,0,0,.6) 0%,rgba(255,0,0,.6) 100%); /* W3C */
+}
+
+.admin_links{
+	margin-right:33px;
+}
+
+.image-cell{
+	width:120px;
+}
+
+.time-cell{
+	width:80px;
+	text-align:center;
+}
