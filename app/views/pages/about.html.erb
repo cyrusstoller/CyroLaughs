@@ -1,2 +1,29 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<div class="twelve chubby columns">
+  <h2>About</h2>
+  
+  <p class="justify">When Cyro laughs you laugh. Let's be real.</p>
+  
+  <p class="justify">When we get together with friends it's fun to share videos we've seen with each other. When you need a break from your work and have already watched all of the movies that your friends have shared on Facebook and Twitter you need another place to turn to.</p>
+</div>
+
+<div class="twelve chubby columns">
+  <h2>Bookmarklet</h2>
+
+  <p class="justify">When you click on the bookmarklet, it will submit the page that you are on as a video to <strong>cyro laughs</strong>. To install the bookmarklet, drag one of the links below to your browser toolbar.</p>
+
+  <h4 class="center"><%# link_to "add video to cyro laughs (new window)", "javascript:(function(){window.open(\"#{new_video_url}?url=\"+encodeURIComponent(location.href);})();" %></h4>
+  <h4 class="center"><%# link_to "add video to cyro laughs", "javascript:(function(){location.href=\"#{new_video_url}?url=\"+encodeURIComponent(location.href);})();" %></h4>
+</div>
+
+<div class="twelve chubby columns">
+  <h2>Contact</h2>
+
+  <p class="justify">Please feel free to shoot us an email to <%= link_to "info@knolcano.com", "mailto:info@knolcano.com?subject=[Feedback] Here's how you could improve cyro laughs" %>. We'd love to hear from you. It's always fun to hear from our users. Any suggestions on how to make <strong>cyro laughs</strong> more useful are more than welcome.</p>
+
+  <p class="justify">If you have something that you would like to tell to Cyrus, please email <%= link_to "cyrus@knolcano.com", "mailto:cyrus@knolcano.com?subject=[Feedback] Here's something you need to know about cyro laughs" %>.</p>
+
+  <p class="justify">Please follow us on Twitter (<%= link_to "@cyrolaughs", "http://www.twitter.com/cyrolaughs" %>) to find out about the latest features and what we find interesting and useful. Also feel free to follow Cyrus's personal twitter account (<%= link_to "@cyrusstoller", "http://www.twitter.com/cyrusstoller" %>).</p>
+  
+  <h2>New Feature Ideas?</h2>
+  <p class="justify">If you have a new feature idea that would make cyro laughs more useful, please let us know. Send an email to <%= link_to "info@knolcano.com", "mailto:info@knolcano.com?subject=[New idea] This would make cyro laughs a lot more useful" %> with a description of your new feature, any sketches you've drawn, and a way to get in touch with you so we can keep you in the loop.</p>
+</div>
