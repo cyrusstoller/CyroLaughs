@@ -11,5 +11,25 @@ require 'spec_helper'
 #   end
 # end
 describe PagesHelper do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  describe "humanize time" do
+    it "should return 0:00 if 0 seconds" do
+      helper.humanize_time(0).should == "00:00"
+    end
+    
+    it "should return time when less than a minute" do
+      helper.humanize_time(30).should == "00:30"
+    end
+    
+    it "should return time when less than 10 minutes" do
+      helper.humanize_time(301).should == "05:01"
+    end
+    
+    it "should return time when more than 10 minutes" do
+      helper.humanize_time(601).should == "10:01"
+    end
+    
+    it "should return time when more than 1 hour" do
+      helper.humanize_time(3663).should == "01:01:03"
+    end
+  end
 end

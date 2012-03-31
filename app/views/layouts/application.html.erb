@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CyroLaughs</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title><%= title %></title>
+  <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 <body>
-
-<%= yield %>
-
+  <%= render "layouts/header" %>
+  <div class="container add-bottom">
+    <%= yield :video %>
+    <div class="twelve chubby columns">
+      <% flash.each do |key, value| %>
+      <div class="flash <%= key %> remove-top">
+        <%= value %>
+      </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
 </body>
 </html>
