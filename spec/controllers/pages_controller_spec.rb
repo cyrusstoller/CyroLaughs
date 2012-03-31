@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe PagesController do
+  render_views
+  
   describe "GET 'home'" do
     it "redirects to about_path" do
       get 'home'
