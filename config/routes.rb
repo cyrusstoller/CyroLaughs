@@ -1,6 +1,4 @@
 CyroLaughs::Application.routes.draw do
-  root :to => 'pages#home'
-
   root :to => 'pages#home', :via => :get
   match '/about',  :to => 'pages#about',  :as => "about",  :via => :get
   match '/recent', :to => 'pages#recent', :as => "recent", :via => :get
