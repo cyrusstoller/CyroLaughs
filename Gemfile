@@ -39,6 +39,10 @@ end
 # authentication
 gem 'devise'
 
+gem 'omniauth-facebook'
+gem 'fb_graph'
+gem 'authbuttons-rails'
+
 gem 'heroku'
 gem 'foreman'
 
