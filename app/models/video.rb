@@ -30,6 +30,7 @@ class Video < ActiveRecord::Base
   validates_format_of :url, :with => URI::regexp(%w(http https)), :allow_nil => :true
   validates_uniqueness_of :serial_number, :message => "already taken. Someone has already sumbitted this link."
   
+  before_validation :get_details
   after_create :add_hash_permalink_id
   
   has_many :views, :class_name => "SessionWatchHistory", :foreign_key => "video_id"

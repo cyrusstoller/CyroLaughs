@@ -27,10 +27,6 @@ describe Video do
       Video.new(:url => "abc").should_not be_valid
     end
     
-    it "should be valid with a real url" do
-      Video.new(:url => "http://www.google.com").should be_valid
-    end
-    
     it "should have unique serial numbers" do
       v1 = Factory(:video, :serial_number => "ABC123")
       v2 = Factory.build(:video, :serial_number => "ABC123")
@@ -161,6 +157,7 @@ describe Video do
         v.thumb_url.should == values[:thumbnail]
         v.duration.should == values[:duration]
         v.serial_number.should == APP_CONFIG["YouTube"].to_s + v_id
+        v.should be_valid
       end
     end
     
@@ -191,6 +188,7 @@ describe Video do
         v.thumb_url.should == values[:thumbnail]
         v.duration.should == values[:duration]
         v.serial_number.should == APP_CONFIG["YouTube"].to_s + v_id
+        v.should be_valid
       end
     end
     
@@ -205,6 +203,7 @@ describe Video do
         v.thumb_url.should == values[:thumbnail]
         v.duration.should == values[:duration]
         v.serial_number.should == APP_CONFIG["Vimeo"].to_s + v_id
+        v.should be_valid
       end
     end
     
