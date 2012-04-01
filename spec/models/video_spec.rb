@@ -22,5 +22,36 @@
 require 'spec_helper'
 
 describe Video do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "validations" do
+    it "should not be valid with a non_url submitted as the url" do
+      Video.new(:url => "abc").should_not be_valid
+    end
+    
+    it "should be valid with a real url" do
+      Video.new(:url => "http://www.google.com").should be_valid
+    end
+    
+    it "should have unique serial numbers" do
+      v1 = Factory(:video, :serial_number => "ABC123")
+      v2 = Factory.build(:video, :serial_number => "ABC123")
+      v2.should_not be_valid
+    end
+  end
+  
+  describe "hash_permalink_id" do
+    it "should have the right value" do
+      video = Factory(:video)
+      video.hash_permalink_id.should == video.id * APP_CONFIG['prime'].to_i & APP_CONFIG['max_id'].to_i
+    end
+  end
+  
+  describe "connections" do
+    it "should respond to views" do
+      Video.new.should respond_to(:views)
+    end
+    
+    it "should respond to owner" do
+      Video.new.should respond_to(:owner)
+    end
+  end
 end

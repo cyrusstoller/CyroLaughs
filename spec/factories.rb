@@ -11,3 +11,9 @@ Factory.define :user do |user|
   user.email      "cyrus@knolcano.com"
   user.password   "foobar"
 end
+
+Factory.define :video do |video|
+  video.title     "title"
+  video.duration  31
+  video.user_id   1
+end

@@ -24,5 +24,21 @@ require 'yajl'
 require 'cgi'
 
 class Video < ActiveRecord::Base
+  attr_accessible :url, :hidden
+  attr_accessor :url
+  
+  validates_format_of :url, :with => URI::regexp(%w(http https)), :allow_nil => :true
+  validates_uniqueness_of :serial_number, :message => "already taken. Someone has already sumbitted this link."
+  
+  after_create :add_hash_permalink_id
+  
+  has_many :views, :class_name => "SessionWatchHistory", :foreign_key => "video_id"
+  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
+  
+  protected
 
+  def add_hash_permalink_id
+    self.hash_permalink_id = self.id * APP_CONFIG['prime'].to_i & APP_CONFIG['max_id'].to_i
+    self.save
+  end
 end
