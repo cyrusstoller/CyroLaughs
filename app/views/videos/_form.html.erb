@@ -1,17 +1,16 @@
-<%= form_for(@video) do |f| %>
-  <% if @video.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
-
-      <ul>
-      <% @video.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @video do |f| %>
+  <div class="eight chubby columns">
+    <%= render 'shared/error_messages', :object => f.object %>
+  </div>
+  <div class="six chubby columns">
+    <p><%= f.text_field :url, :value => @url, :placeholder => "YouTube or Vimeo URL (eg http://www.youtube.com/watch?v=abc... )" %></p>
+    
+    <% if params[:action] == 'edit' %>
+      <p><%= f.check_box :hidden %> <%= f.label :hidden %></p>
+    <% end %>
+    
+    <div class="actions">
+      <%= f.submit "submit" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>

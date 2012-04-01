@@ -6,8 +6,12 @@ CyroLaughs::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => 'registrations'}
   
-  resources :videos
-  
+  resources :videos do
+    member do
+      post 'rating'
+    end
+  end
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

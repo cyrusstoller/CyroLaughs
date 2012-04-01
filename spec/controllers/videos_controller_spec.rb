@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe VideosController do
+  render_views
 
   # This should return the minimal set of attributes required to create a valid
   # Video. As you add validations to Video, be sure to

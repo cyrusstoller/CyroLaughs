@@ -1,0 +1,2 @@
+$("#positive_response").html("<%= escape_javascript( link_to( button_tag("Thanks! Next Video", :id => "awesome_button", :class => "big_button"), root_path )) %>");
+$("#liked_count").html("<%= escape_javascript( link_to "Liked (#{@liked_count})", liked_path ) %>");

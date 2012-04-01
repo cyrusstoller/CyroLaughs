@@ -1,5 +1,70 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+  <!-- adding open graph stuff -->
+  <meta property="og:title" content="cyro laughs: <%= @video.title %>"/>
+  <meta property="og:type" content="video"/>
+  <meta property="og:url" content="<%= video_url(@video) %>"/>
+  <meta property="og:image" content="<%= @video.thumb_url %>"/>
+  <meta property="og:site_name" content="cyro laughs"/>
+  <meta property="og:description" content=""/>
+  <% if @video.service_id.to_i == APP_CONFIG["YouTube"] %>
+    <meta property="og:video" content="http://www.youtube.com/v/<%= @video.v_id %>?version=3&autohide=1">
+  <% end %>
+  <% if @video.service_id.to_i == APP_CONFIG["Vimeo"] %>
+    <meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=<%= @video.v_id %>">
+    <meta property="og:video" content="http://player.vimeo.com/video/<%= @video.v_id %>">
+  <% end %>
+  <meta property="og:video:type" content="application/x-shockwave-flash">
+  <meta property="og:video:width" content="640">
+  <meta property="og:video:height" content="360">
+<% end %>
 
+<% content_for :video do %>
+  <% if session[:admin] == "true" %>
+    <div class="twelve chubby columns right">
+      <div class="admin_links">
+      <%= link_to 'Edit', edit_video_path(@video) %> | <%= link_to 'Delete', @video, confirm: 'Are you sure?', method: :delete %>
+      </div>
+    </div>
+  <% end %>
 
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>
+  <div class="twelve chubby columns center">
+  <% if @video.service_id.to_i == APP_CONFIG["YouTube"] %>
+    <iframe width="853" height="480" src="http://www.youtube.com/embed/<%= @video.v_id %>?rel=0&autoplay=1&wmode=transparent&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  <% end %>
+  <% if @video.service_id.to_i == APP_CONFIG["Vimeo"] %>
+    <iframe src="http://player.vimeo.com/video/<%= @video.v_id %>?autoplay=true" width="853" height="480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  <% end %>
+  </div>
+
+  <div class="share_options">
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style share_spacing">
+      <a class="addthis_button_facebook"></a>
+    </div>
+    <div class="addthis_toolbox addthis_default_style share_spacing">
+      <a class="addthis_button_twitter"></a>
+    </div>
+    <div class="addthis_toolbox addthis_default_style share_spacing">
+      <a class="addthis_button_email"></a>
+    </div>
+    <div class="addthis_toolbox addthis_default_style share_spacing">
+      <a class="addthis_button_compact"></a>
+    </div>
+    <!-- AddThis Button END -->
+  </div>
+
+  <div class="twelve chubby columns center action-buttons">
+    <span id="positive_response">
+      <%= form_tag rating_video_path(@video), :class => "inline", :remote => false do %>
+        <%= submit_tag "Awesome", :class => "big_button", :id => "awesome_button" %>
+      <% end %>
+    </span>
+    <%= form_tag rating_video_path(@video), :class => "inline" do %>
+      <%= submit_tag "Skip", :class => "big_button", :id => "meh_button" %>
+    <% end %>
+    <%= form_tag rating_video_path(@video), :class => "inline" do %>
+      <%= submit_tag "Dislike", :class => "big_button", :id => "dislike_button" %>
+    <% end %>
+  </div>
+<% end %>
+

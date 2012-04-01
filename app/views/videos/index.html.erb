@@ -1,21 +1,37 @@
-<h1>Listing videos</h1>
+<div class="twelve chubby columns">
+  <h2>Video Index (<%= @videos.count %> total)</h2>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table class="full">
+    <tr>
+      <th><strong><%= sortable_link_to "id" %></strong></th>
+      <th><strong><%= sortable_link_to "title" %></strong></th>
+      <th><strong><%= sortable_link_to "current_week_net_votes", "Week Net" %></strong></th>
+      <th><strong><%= sortable_link_to "overall_net_votes", "Total Net" %></strong></th>
+      <th><strong><%= sortable_link_to "current_week_num_votes", "Week Total" %></strong></th>
+      <th><strong><%= sortable_link_to "overall_num_votes", "Total Votes" %></strong></th>
+      <th><strong><%= sortable_link_to "hidden" %></strong></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @videos.each do |video| %>
-  <tr>
-    <td><%= link_to 'Show', video %></td>
-    <td><%= link_to 'Edit', edit_video_path(video) %></td>
-    <td><%= link_to 'Destroy', video, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <% @videos.each do |video| %>
+    <tr>
+      <td class="center"><%= video.id %></td>
+      <td class="center"><%= link_to video.title, video %></td>
+      <td class="center"><%= video.current_week_net_votes %></td>
+      <td class="center"><%= video.overall_net_votes %></td>
+      <td class="center"><%= video.current_week_num_votes %></td>
+      <td class="center"><%= video.overall_num_votes %></td>
+      <td class="center"><%= video.hidden %></td>
+      <td class="center"><%= link_to 'Edit', edit_video_path(video) %></td>
+      <td class="center"><%= link_to 'Destroy', video, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<br />
+  <br />
 
-<%= link_to 'New Video', new_video_path %>
+  <div class="center">
+    <%= will_paginate @videos %>
+  </div>
+</div>

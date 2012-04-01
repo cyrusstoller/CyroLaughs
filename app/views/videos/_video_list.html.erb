@@ -1,0 +1,12 @@
+<table class="full">
+  <% videos.each do |video| %>
+    <tr class="top-cell">
+      <td class="top-cell image-cell"><%= image_tag video.thumb_url, :width => "120px" %></td>
+      <td class="top-cell time-cell">(<%= humanize_time video.duration %>)</td>
+      <td class="top-cell">
+        <h4><%= link_to video.title, video %></h4>
+        Submitted on: <%= video.created_at.to_date.strftime("%m/%d/%Y") %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,6 +1,12 @@
-<h1>Editing video</h1>
+<div class="twelve chubby columns">
+  <h2>modify video link</h2>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @video %> |
-<%= link_to 'Back', videos_path %>
+<div class="six chubby columns">
+  <h4 class="justify inline has_edit_link">
+    If you're here, you should be an admin. With great power comes great responsibility.
+  </h4>
+  <span><%= link_to 'Watch Video', @video %></span>
+</div>

@@ -41,7 +41,11 @@ class Video < ActiveRecord::Base
   end
   
   def service_id
-    serial_number[0]
+    begin
+      serial_number[0]
+    rescue
+      nil
+    end
   end
   
   def display_url
