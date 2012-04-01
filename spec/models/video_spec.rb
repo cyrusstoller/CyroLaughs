@@ -38,6 +38,20 @@ describe Video do
     end
   end
   
+  describe "serial number accessors" do
+    before(:each) do
+      @video = Factory(:video, :serial_number => "1ABC")
+    end
+    
+    it "should return the video_id" do
+      @video.v_id.should == "ABC"
+    end
+    
+    it "should return the service_id" do
+      @video.service_id.should == "1"
+    end
+  end
+  
   describe "hash_permalink_id" do
     it "should have the right value" do
       video = Factory(:video)

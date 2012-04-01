@@ -35,6 +35,14 @@ class Video < ActiveRecord::Base
   has_many :views, :class_name => "SessionWatchHistory", :foreign_key => "video_id"
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   
+  def v_id
+    serial_number[1..-1]
+  end
+  
+  def service_id
+    serial_number[0]
+  end
+
   protected
 
   def add_hash_permalink_id
