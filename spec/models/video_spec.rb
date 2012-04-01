@@ -117,6 +117,118 @@ describe Video do
     end
   end
   
+  describe "get_details from the service" do
+    it "should respond_to :get_details" do
+      Video.new.should respond_to(:get_details)
+    end
+    
+    it "should return nil if url is nil" do
+      Video.new.get_details.should be_nil
+    end
+    
+    it "should respond to youtube_details" do
+      Video.new.should respond_to(:youtube_details)
+    end
+    
+    it "should respond to vimeo_details" do
+      Video.new.should respond_to(:vimeo_details)
+    end
+    
+    describe "YouTube.com" do
+      it "should add an error to base when there is an invalid url without an id" do
+        v = Video.new(:url => "http://www.youtube.com/watch?")
+        v.get_details
+        v.errors.messages[:base].should_not be_empty
+        v.errors.messages[:base].first.should == "Sorry. Please submit the link to the actual video on YouTube, not the search results page."
+      end
+      
+      it "should add an error when youtube prohibits embedding the video" do
+        v_id = "_OBlgSz8sSM"
+        v = Video.new(:url => "http://www.youtube.com/watch?v=#{v_id}")
+        v.stub(:youtube_details).and_return(nil)
+        v.get_details
+        v.errors.messages[:base].should_not be_empty
+        v.errors.messages[:base].first.should == "Sorry. YouTube won't let us embed that video."
+      end
+      
+      it "should add the appropriate title, thumbnail, and duration" do
+        v_id = "_OBlgSz8sSM"
+        values = {:title => "a", :thumbnail => "http://i.ytimg.com/vi/_OBlgSz8sSM/0.jpg", :duration => 10}
+        v = Video.new(:url => "http://www.youtube.com/watch?v=#{v_id}")
+        v.stub(:youtube_details).and_return(values)
+        v.get_details
+        v.title.should == values[:title]
+        v.thumb_url.should == values[:thumbnail]
+        v.duration.should == values[:duration]
+        v.serial_number.should == APP_CONFIG["YouTube"].to_s + v_id
+      end
+    end
+    
+    describe "youtu.be" do
+      it "should add an error to base when there is an invalid url without an id" do
+        v = Video.new(:url => "http://youtu.be/")
+        v.get_details
+        v.errors.messages[:base].should_not be_empty
+        v.errors.messages[:base].first.should == "Sorry. Please submit the link to the actual video on YouTube, not the search results page."
+      end
+      
+      it "should add an error when youtube prohibits embedding the video" do
+        v_id = "_OBlgSz8sSM"
+        v = Video.new(:url => "http://youtu.be/#{v_id}")
+        v.stub(:youtube_details).and_return(nil)
+        v.get_details
+        v.errors.messages[:base].should_not be_empty
+        v.errors.messages[:base].first.should == "Sorry. YouTube won't let us embed that video."
+      end
+      
+      it "should add the appropriate title, thumbnail, and duration" do
+        v_id = "_OBlgSz8sSM"
+        values = {:title => "a", :thumbnail => "http://i.ytimg.com/vi/_OBlgSz8sSM/0.jpg", :duration => 10}
+        v = Video.new(:url => "http://youtu.be/#{v_id}")
+        v.stub(:youtube_details).and_return(values)
+        v.get_details
+        v.title.should == values[:title]
+        v.thumb_url.should == values[:thumbnail]
+        v.duration.should == values[:duration]
+        v.serial_number.should == APP_CONFIG["YouTube"].to_s + v_id
+      end
+    end
+    
+    describe "Vimeo" do
+      it "should add the appropriate title, thumbnail, and duration" do
+        v_id = "_OBlgSz8sSM"
+        values = {:title => "a", :thumbnail => "http://i.ytimg.com/vi/_OBlgSz8sSM/0.jpg", :duration => 10}
+        v = Video.new(:url => "http://vimeo.com/#{v_id}")
+        v.stub(:vimeo_details).and_return(values)
+        v.get_details
+        v.title.should == values[:title]
+        v.thumb_url.should == values[:thumbnail]
+        v.duration.should == values[:duration]
+        v.serial_number.should == APP_CONFIG["Vimeo"].to_s + v_id
+      end
+    end
+    
+    describe "non-youtube or vimeo" do
+      it "should return an error" do
+        v = Video.new(:url => "http://www.flash.com/watch?")
+        v.get_details
+        v.errors.messages[:base].should_not be_empty
+        v.errors.messages[:base].first.should == "Sorry. Right now we only support videos hosted on YouTube and Vimeo."
+      end
+    end
+    
+    describe "when there is an error" do
+      it "should return an error" do
+        v_id = "_OBlgSz8sSM"
+        v = Video.new(:url => "http://www.youtube.com/watch?v=#{v_id}")
+        v.stub(:youtube_details).and_return([])
+        v.get_details
+        v.errors.messages[:base].should_not be_empty
+        v.errors.messages[:base].first.should == "Sorry. Can you double check that you submitted a valid YouTube or Vimeo url?"
+      end
+    end
+  end
+  
   describe "hash_permalink_id" do
     it "should have the right value" do
       video = Factory(:video)

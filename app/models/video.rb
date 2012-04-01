@@ -56,7 +56,7 @@ class Video < ActiveRecord::Base
     url_components = URI.split(url)
     begin
       case url_components[2].downcase
-      when "youtube.com", "www.youtube.com", "youtu.be"
+      when "youtube.com", "www.youtube.com", "youtu.be", "www.youtu.be"
         service_id = APP_CONFIG["YouTube"]
         if url_components[2].downcase == "youtu.be"
           v_id = url_components[5][1..-1]
@@ -75,6 +75,70 @@ class Video < ActiveRecord::Base
       nil
     end
   end
+  
+  def get_details
+    return if url.nil? #to allow for command line modifications
+    url_components = URI.split(url)    
+    begin
+      case url_components[2].downcase
+      when "youtube.com", "www.youtube.com", "youtu.be", "www.youtu.be"
+        service_id = APP_CONFIG["YouTube"]
+        if url_components[2].downcase == "youtu.be"
+          v_id = url_components[5][1..-1] #to get rid of the leading slash
+        else
+          v_id = CGI::parse(url_components[7])["v"].first
+        end
+        if v_id.blank? or v_id.nil?
+          errors[:base] << "Sorry. Please submit the link to the actual video on YouTube, not the search results page."
+          return
+        end
+        meta_data = youtube_details(v_id)
+        if meta_data.nil?
+          errors[:base] << "Sorry. YouTube won't let us embed that video."
+          return
+        end
+        self.title = meta_data[:title]
+        self.thumb_url = meta_data[:thumbnail]
+        self.duration = meta_data[:duration]
+        self.serial_number = service_id.to_s + v_id.to_s
+      when "vimeo.com", "www.vimeo.com"
+        service_id = APP_CONFIG["Vimeo"]
+        v_id = url_components[5][1..-1] #getting rid of the leading '/'
+        meta_data = vimeo_details(v_id)
+        self.title = meta_data[:title]
+        self.thumb_url = meta_data[:thumbnail]
+        self.duration = meta_data[:duration]
+        self.serial_number = service_id.to_s + v_id.to_s
+      else
+        errors[:base] << "Sorry. Right now we only support videos hosted on YouTube and Vimeo."
+      end
+    rescue
+      errors[:base] << "Sorry. Can you double check that you submitted a valid YouTube or Vimeo url?"
+    end
+  end
+  
+  def youtube_details(v_id)
+    meta_data = Nokogiri::HTML(open("http://gdata.youtube.com/feeds/api/videos/#{v_id}"))
+    if meta_data.search("noembed").empty?
+      return nil
+    else
+      return {
+        :title     => meta_data.search("title").first.text,
+        :thumbnail => meta_data.search("thumbnail")[1].attributes["url"].value,
+        :duration  => meta_data.search("duration").first.attributes["seconds"].value
+      }
+    end
+  end
+  
+  def vimeo_details(v_id)
+    parser = Yajl::Parser.new
+    meta_data = parser.parse(open("http://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/#{v_id}"))
+    return {
+      :title => meta_data["title"],
+      :thumbnail => meta_data["thumbnail"],
+      :duration => meta_data["duration"]
+    }
+  end
 
   protected
 
@@ -82,4 +146,5 @@ class Video < ActiveRecord::Base
     self.hash_permalink_id = self.id * APP_CONFIG['prime'].to_i & APP_CONFIG['max_id'].to_i
     self.save
   end
+
 end
