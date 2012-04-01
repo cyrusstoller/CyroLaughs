@@ -63,19 +63,19 @@ ActiveRecord::Schema.define(:version => 20120401000034) do
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "videos", :force => true do |t|
-    t.integer  "current_week_net_votes"
-    t.integer  "current_week_num_votes"
-    t.integer  "overall_net_votes"
-    t.integer  "overall_num_votes"
+    t.integer  "current_week_net_votes", :default => 0
+    t.integer  "current_week_num_votes", :default => 0
+    t.integer  "overall_net_votes",      :default => 0
+    t.integer  "overall_num_votes",      :default => 0
     t.string   "title"
-    t.integer  "duration"
+    t.integer  "duration",               :default => 0
     t.string   "thumb_url"
     t.string   "serial_number"
     t.integer  "hash_permalink_id"
     t.integer  "user_id"
-    t.boolean  "hidden"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.boolean  "hidden",                 :default => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   add_index "videos", ["current_week_net_votes"], :name => "index_videos_on_current_week_net_votes"

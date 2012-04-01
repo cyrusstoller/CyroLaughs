@@ -1,20 +1,20 @@
 # == Schema Information
-# Schema version: 20120331234716
+# Schema version: 20120401000034
 #
 # Table name: videos
 #
 #  id                     :integer         not null, primary key
-#  current_week_net_votes :integer
-#  current_week_num_votes :integer
-#  overall_net_votes      :integer
-#  overall_num_votes      :integer
+#  current_week_net_votes :integer         default(0)
+#  current_week_num_votes :integer         default(0)
+#  overall_net_votes      :integer         default(0)
+#  overall_num_votes      :integer         default(0)
 #  title                  :string(255)
-#  duration               :integer
+#  duration               :integer         default(0)
 #  thumb_url              :string(255)
 #  serial_number          :string(255)
 #  hash_permalink_id      :integer
 #  user_id                :integer
-#  hidden                 :boolean
+#  hidden                 :boolean         default(FALSE)
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
 #

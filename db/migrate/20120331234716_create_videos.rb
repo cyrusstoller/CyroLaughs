@@ -1,17 +1,17 @@
 class CreateVideos < ActiveRecord::Migration
   def change
     create_table :videos do |t|
-      t.integer    :current_week_net_votes
-      t.integer    :current_week_num_votes
-      t.integer    :overall_net_votes     
-      t.integer    :overall_num_votes     
+      t.integer    :current_week_net_votes, :default => 0
+      t.integer    :current_week_num_votes, :default => 0
+      t.integer    :overall_net_votes     , :default => 0
+      t.integer    :overall_num_votes     , :default => 0
       t.string     :title                 
-      t.integer    :duration              
+      t.integer    :duration              , :default => 0
       t.string     :thumb_url             
       t.string     :serial_number         
       t.integer    :hash_permalink_id     
       t.integer    :user_id               
-      t.boolean    :hidden
+      t.boolean    :hidden                , :default => false
       t.timestamps
     end
     
