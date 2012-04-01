@@ -5,7 +5,9 @@ CyroLaughs::Application.routes.draw do
   match '/liked',  :to => 'pages#liked',  :as => "liked",  :via => :get  
 
   devise_for :users
-
+  
+  resources :videos
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

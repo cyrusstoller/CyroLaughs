@@ -46,4 +46,27 @@ ActiveRecord::Schema.define(:version => 20120331223648) do
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
+  create_table "videos", :force => true do |t|
+    t.integer  "current_week_net_votes"
+    t.integer  "current_week_num_votes"
+    t.integer  "overall_net_votes"
+    t.integer  "overall_num_votes"
+    t.string   "title"
+    t.integer  "duration"
+    t.string   "thumb_url"
+    t.string   "serial_number"
+    t.integer  "hash_permalink_id"
+    t.integer  "user_id"
+    t.boolean  "hidden"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "videos", ["current_week_net_votes"], :name => "index_videos_on_current_week_net_votes"
+  add_index "videos", ["current_week_num_votes"], :name => "index_videos_on_current_week_num_votes"
+  add_index "videos", ["hash_permalink_id"], :name => "index_videos_on_hash_permalink_id"
+  add_index "videos", ["hidden"], :name => "index_videos_on_hidden"
+  add_index "videos", ["serial_number"], :name => "index_videos_on_serial_number"
+  add_index "videos", ["user_id"], :name => "index_videos_on_user_id"
+
 end

@@ -11,7 +11,7 @@
         <li class="left-padding-only"><%= link_to "About", about_path %></li>
         <li class="left-padding-only" id="liked_count"><%= link_to "Liked (#{@liked_count})", liked_path %></li>
         <li class="left-padding-only"><%= link_to "Watched (#{@watched_count})", recent_path %></li>
-        <li class="left-padding-only"><%# link_to "Submit video", new_video_path %></li>
+        <li class="left-padding-only"><%= link_to "Submit video", new_video_path %></li>
         <% if signed_in? %>
           <li class="left-padding-only"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
         <% else %>

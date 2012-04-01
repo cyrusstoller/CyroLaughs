@@ -11,8 +11,8 @@
 
   <p class="justify">When you click on the bookmarklet, it will submit the page that you are on as a video to <strong>cyro laughs</strong>. To install the bookmarklet, drag one of the links below to your browser toolbar.</p>
 
-  <h4 class="center"><%# link_to "add video to cyro laughs (new window)", "javascript:(function(){window.open(\"#{new_video_url}?url=\"+encodeURIComponent(location.href);})();" %></h4>
-  <h4 class="center"><%# link_to "add video to cyro laughs", "javascript:(function(){location.href=\"#{new_video_url}?url=\"+encodeURIComponent(location.href);})();" %></h4>
+  <h4 class="center"><%= link_to "add video to cyro laughs (new window)", "javascript:(function(){window.open(\"#{new_video_url}?url=\"+encodeURIComponent(location.href);})();" %></h4>
+  <h4 class="center"><%= link_to "add video to cyro laughs", "javascript:(function(){location.href=\"#{new_video_url}?url=\"+encodeURIComponent(location.href);})();" %></h4>
 </div>
 
 <div class="twelve chubby columns">
