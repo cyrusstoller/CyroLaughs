@@ -38,6 +38,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :username
       t.boolean :admin
+      
+      t.string  :fb_token, :default => nil
+      t.integer :uid
 
       t.timestamps
     end
@@ -49,5 +52,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :authentication_token, :unique => true
 
     add_index :users, :username,             :unique => true
+    add_index :users, :fb_token
+    add_index :users, :uid
   end
 end

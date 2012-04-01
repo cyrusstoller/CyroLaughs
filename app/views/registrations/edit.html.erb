@@ -1,0 +1,41 @@
+<div class="six chubby columns">
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  
+  <% if resource.fb_token.nil? %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username %>  
+
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+      <%= f.password_field :current_password %>
+
+      <p><%= f.submit "Update" %></p>
+    <% end %>
+  
+    <%= link_to "Back", :back %>
+  <% else %>
+    You've signed in with Facebook. You don't need to worry about this.
+    
+    <h4 class="center"><%= link_to "Back to videos", root_path %></h4>
+  <% end %>
+</div>
+
+<div class="six chubby columns">
+  <h2>Deactivating your account</h2>
+
+  <p>We would really appreciate hearing why you're thinking about deactivating your account. Email <%= mail_to "info@knolcano.com" %>. We promise we'll listen.</p>
+  
+  <p>Still unhappy? Click <%= link_to "here", registration_path(resource_name), :confirm => "Are you sure that you want to delete your account? This cannot be undone.", :method => :delete %> if you would like to permanently delete your account with Knolcano.</p>
+  
+</div>

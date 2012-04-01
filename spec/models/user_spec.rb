@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20120331223648
+# Schema version: 20120401000034
 #
 # Table name: users
 #
@@ -25,6 +25,8 @@
 #  authentication_token   :string(255)
 #  username               :string(255)
 #  admin                  :boolean
+#  fb_token               :string(255)
+#  uid                    :integer
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
 #
@@ -45,6 +47,28 @@ describe User do
     it "should return the part of the email address before the @ if there is no username" do
       user = Factory(:user, :username => nil, :email => "cyrus@knolcano.com")
       user.display_name.should == "cyrus"
+    end
+  end
+  
+  describe "connections" do
+    before(:each) do
+      @user = Factory.build(:user)
+    end
+    
+    it "should respond to videos_submitted" do
+      @user.should respond_to(:videos_submitted)
+    end
+    
+    it "should respond to watch_history" do
+      @user.should respond_to(:watch_history)
+    end
+    
+    it "should respond to videos_watched" do
+      @user.should respond_to(:videos_watched)
+    end
+    
+    it "should respond to videos_liked" do
+      @user.should respond_to(:videos_liked)
     end
   end
 end

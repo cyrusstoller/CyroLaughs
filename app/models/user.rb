@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20120331223648
+# Schema version: 20120401000034
 #
 # Table name: users
 #
@@ -25,6 +25,8 @@
 #  authentication_token   :string(255)
 #  username               :string(255)
 #  admin                  :boolean
+#  fb_token               :string(255)
+#  uid                    :integer
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
 #
@@ -36,12 +38,32 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :username, :remember_me #:password_confirmation
   # attr_accessible :title, :body
   
   #to allow a user to sign in using either thier username or email
   attr_accessor :login
   attr_accessible :login
+
+  validates_uniqueness_of :username, :on => :create, :message => "must be unique", :case_sensitive => false, :allow_nil => true, :allow_blank => true
+  validates_length_of :username, :within => 3..15, :on => :create, :allow_nil => true, :allow_blank => true
+  validates_format_of :username, :with => /^[\w\d]+$/, :allow_nil => true, :allow_blank => true
+  
+  before_save :reset_authentication_token
+  
+  has_many :videos_submitted, :class_name => "Video", :foreign_key => "user_id"
+  
+  has_many :watch_history, :class_name => "SessionWatchHistory", :foreign_key => "user_id"
+  has_many :videos_watched, :class_name => "Video", :through => :watch_history, :source => :video
+  
+  has_many :videos_liked, :class_name => "Video", :through => :watch_history, :source => :video, 
+    :conditions => "`session_watch_histories`.status = #{APP_CONFIG["Awesome"]}"
+
+  def apply_omniauth(omniauth)
+    self.email = omniauth['info']['email'] if email.blank?
+    self.uid = omniauth['uid']
+    self.fb_token = omniauth['credentials']['token']
+  end
 
   def display_name
     return username unless username.nil? or username.blank?

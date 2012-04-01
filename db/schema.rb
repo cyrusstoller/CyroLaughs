@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20120401000034) do
     t.string   "authentication_token"
     t.string   "username"
     t.boolean  "admin"
+    t.string   "fb_token"
+    t.integer  "uid"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
@@ -58,7 +60,9 @@ ActiveRecord::Schema.define(:version => 20120401000034) do
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["fb_token"], :name => "index_users_on_fb_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["uid"], :name => "index_users_on_uid"
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 

@@ -4,7 +4,7 @@ CyroLaughs::Application.routes.draw do
   match '/recent', :to => 'pages#recent', :as => "recent", :via => :get
   match '/liked',  :to => 'pages#liked',  :as => "liked",  :via => :get  
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => 'registrations'}
   
   resources :videos
   
