@@ -53,6 +53,10 @@ describe Video do
   end
   
   describe "display_url" do
+    it "should respond to display_url" do
+      Video.new.should respond_to(:display_url)
+    end
+    
     it "should return a youtube url" do
       video = Factory(:video, :serial_number => "#{APP_CONFIG["YouTube"]}ABC")
       video.display_url.should == "http://www.youtube.com/watch?v=ABC"
@@ -66,6 +70,50 @@ describe Video do
     it "should return nil if the service id invalid" do
       video = Factory(:video, :serial_number => "0ABC")
       video.display_url.should be_nil
+    end
+  end
+  
+  describe "finding videos with_url" do
+    it "should respond to with_url" do
+      Video.should respond_to(:with_url)
+    end
+    
+    it "should return nil when there are no videos at the url in the database" do
+      Video.with_url("http://www.google.com/").should be_nil
+    end
+    
+    describe "youtube" do
+      before(:each) do
+        @v_id = "abc"
+        @video = Factory(:video, :serial_number => "#{APP_CONFIG["YouTube"]}#{@v_id}")
+      end
+      
+      it "should return @video when using youtube.com" do
+        Video.with_url("http://youtube.com/?v=#{@v_id}&q=12344444").should == @video
+      end
+      
+      it "should return @video when using www.youtube.com" do
+        Video.with_url("http://www.youtube.com/?v=#{@v_id}&q=222").should == @video
+      end
+      
+      it "should return @video when using youtu.be" do
+        Video.with_url("http://youtu.be/#{@v_id}?v=123333").should == @video
+      end
+    end
+    
+    describe "vimeo" do
+      before(:each) do
+        @v_id = "abc"
+        @video = Factory(:video, :serial_number => "#{APP_CONFIG["Vimeo"]}#{@v_id}")
+      end
+      
+      it "should return @video when using vimeo.com" do
+        Video.with_url("http://vimeo.com/#{@v_id}?v=22").should == @video
+      end
+      
+      it "should return @video when using www.vimeo.com" do
+        Video.with_url("http://www.vimeo.com/#{@v_id}?v=33").should == @video
+      end
     end
   end
   

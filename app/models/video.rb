@@ -51,6 +51,30 @@ class Video < ActiveRecord::Base
       "http://vimeo.com/#{self.v_id}"
     end
   end
+  
+  def self.with_url(url)
+    url_components = URI.split(url)
+    begin
+      case url_components[2].downcase
+      when "youtube.com", "www.youtube.com", "youtu.be"
+        service_id = APP_CONFIG["YouTube"]
+        if url_components[2].downcase == "youtu.be"
+          v_id = url_components[5][1..-1]
+        else
+          v_id = CGI::parse(url_components[7])["v"].first
+        end
+        serial_number = service_id.to_s + v_id.to_s
+      when "vimeo.com", "www.vimeo.com"
+        service_id = APP_CONFIG["Vimeo"]
+        v_id = url_components[5][1..-1] #getting rid of the leading '/'
+        serial_number = service_id.to_s + v_id.to_s
+      end
+      # puts serial_number
+      Video.where("serial_number = :s", :s => serial_number).first
+    rescue
+      nil
+    end
+  end
 
   protected
 
