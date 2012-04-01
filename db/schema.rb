@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(:version => 20120401000034) do
     t.string   "session_id"
     t.integer  "video_id"
     t.string   "ip_address"
-    t.integer  "status"
-    t.integer  "count"
+    t.integer  "status",     :default => 0
+    t.integer  "count",      :default => 0
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "session_watch_histories", ["ip_address"], :name => "index_session_watch_histories_on_ip_address"

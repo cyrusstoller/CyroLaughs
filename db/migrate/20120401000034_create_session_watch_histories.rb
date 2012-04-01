@@ -4,8 +4,8 @@ class CreateSessionWatchHistories < ActiveRecord::Migration
       t.string    :session_id
       t.integer   :video_id
       t.string    :ip_address
-      t.integer   :status
-      t.integer   :count
+      t.integer   :status, :default => 0
+      t.integer   :count,  :default => 0
       t.integer   :user_id
       
       t.timestamps

@@ -7,8 +7,8 @@
 #  session_id :string(255)
 #  video_id   :integer
 #  ip_address :string(255)
-#  status     :integer
-#  count      :integer
+#  status     :integer         default(0)
+#  count      :integer         default(0)
 #  user_id    :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
