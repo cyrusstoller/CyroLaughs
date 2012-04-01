@@ -52,6 +52,23 @@ describe Video do
     end
   end
   
+  describe "display_url" do
+    it "should return a youtube url" do
+      video = Factory(:video, :serial_number => "#{APP_CONFIG["YouTube"]}ABC")
+      video.display_url.should == "http://www.youtube.com/watch?v=ABC"
+    end
+    
+    it "should return a vimeo url" do
+      video = Factory(:video, :serial_number => "#{APP_CONFIG["Vimeo"]}ABC")
+      video.display_url.should == "http://vimeo.com/ABC"
+    end
+    
+    it "should return nil if the service id invalid" do
+      video = Factory(:video, :serial_number => "0ABC")
+      video.display_url.should be_nil
+    end
+  end
+  
   describe "hash_permalink_id" do
     it "should have the right value" do
       video = Factory(:video)

@@ -42,6 +42,15 @@ class Video < ActiveRecord::Base
   def service_id
     serial_number[0]
   end
+  
+  def display_url
+    case service_id.to_i
+    when APP_CONFIG["YouTube"].to_i
+      "http://www.youtube.com/watch?v=#{self.v_id}"
+    when APP_CONFIG["Vimeo"].to_i
+      "http://vimeo.com/#{self.v_id}"
+    end
+  end
 
   protected
 
