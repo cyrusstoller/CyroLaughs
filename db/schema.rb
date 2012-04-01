@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331223648) do
+ActiveRecord::Schema.define(:version => 20120401000034) do
+
+  create_table "session_watch_histories", :force => true do |t|
+    t.string   "session_id"
+    t.integer  "video_id"
+    t.string   "ip_address"
+    t.integer  "status"
+    t.integer  "count"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "session_watch_histories", ["ip_address"], :name => "index_session_watch_histories_on_ip_address"
+  add_index "session_watch_histories", ["session_id"], :name => "index_session_watch_histories_on_session_id"
+  add_index "session_watch_histories", ["user_id"], :name => "index_session_watch_histories_on_user_id"
+  add_index "session_watch_histories", ["video_id"], :name => "index_session_watch_histories_on_video_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
