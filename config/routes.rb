@@ -11,6 +11,10 @@ CyroLaughs::Application.routes.draw do
       post 'rating'
     end
   end
+  
+  match 'auth/:provider/callback', :to => 'authentications#create'
+  match 'auth/:provider/failure', :to => 'authentications#failure'
+  resources :authentications, :only => [:create]
     
   # The priority is based upon order of creation:
   # first created -> highest priority.
