@@ -35,7 +35,14 @@ describe VideosController do
     { :session_id => "woot" }
   end
 
+  def auth_admin
+    @request.env["HTTP_AUTHORIZATION"] = "Basic " + Base64::encode64("#{ENV["ADMIN_USER"]}:#{ENV["ADMIN_PASSWORD"]}")
+  end
+
   describe "GET index" do
+    before(:each) do
+      auth_admin
+    end
     it "assigns all videos as @videos" do
       video = Factory(:video)
       get :index, {}, valid_session
@@ -65,6 +72,9 @@ describe VideosController do
   end
 
   describe "GET edit" do
+    before(:each) do
+      auth_admin
+    end
     it "assigns the requested video as @video" do
       video = Factory(:video)
       get :edit, {:id => video.to_param}, valid_session
@@ -115,6 +125,9 @@ describe VideosController do
   end
 
   describe "PUT update" do
+    before(:each) do
+      auth_admin
+    end
     describe "with valid params" do
       it "updates the requested video" do
         video = Factory(:video)
@@ -162,6 +175,9 @@ describe VideosController do
   end
 
   describe "DELETE destroy" do
+    before(:each) do
+      auth_admin
+    end
     it "destroys the requested video" do
       video = Factory(:video)
       expect {
