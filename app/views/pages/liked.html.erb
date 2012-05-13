@@ -1,2 +1,7 @@
-<h1>Pages#liked</h1>
-<p>Find me in app/views/pages/liked.html.erb</p>
+<div class="twelve chubby columns add-bottom">
+  <h2>Recently liked</h2>
+  
+  <%= render 'videos/video_list', :videos => @videos %>
+  
+</div>
+<div class="center"><%= will_paginate @videos %></div>
