@@ -220,5 +220,5 @@ DEPENDENCIES
   spork
   uglifier (>= 1.0.3)
   webrat
-  will_paginate (> 3.0.0)
+  will_paginate (~> 3.0)
   yajl-ruby
