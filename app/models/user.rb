@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   has_many :videos_watched, :class_name => "Video", :through => :watch_history, :source => :video
   
   has_many :videos_liked, :class_name => "Video", :through => :watch_history, :source => :video, 
-    :conditions => "`session_watch_histories`.status = #{APP_CONFIG["Awesome"]}"
+    :conditions => "session_watch_histories.status = #{APP_CONFIG["Awesome"]}"
 
   def apply_omniauth(omniauth)
     self.email = omniauth['info']['email'] if email.blank?
