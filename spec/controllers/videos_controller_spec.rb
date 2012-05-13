@@ -32,7 +32,7 @@ describe VideosController do
   # in order to pass any filters (e.g. authentication) defined in
   # VideosController. Be sure to keep this updated too.
   def valid_session
-    {}
+    { :session_id => "woot" }
   end
 
   describe "GET index" do
@@ -48,6 +48,12 @@ describe VideosController do
       video = Factory(:video)
       get :show, {:id => video.to_param}, valid_session
       assigns(:video).should eq(video)
+    end
+    
+    it "should increase the set recent count to 1" do
+      video = Factory(:video)
+      get :show, {:id => video.to_param}, valid_session
+      SessionWatchHistory.last.count.should == 1
     end
   end
 
