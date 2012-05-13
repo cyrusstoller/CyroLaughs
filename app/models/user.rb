@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :username, :remember_me #:password_confirmation
-  # attr_accessible :title, :body
   
   #to allow a user to sign in using either thier username or email
   attr_accessor :login
