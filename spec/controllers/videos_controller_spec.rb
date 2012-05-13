@@ -25,7 +25,7 @@ describe VideosController do
   # Video. As you add validations to Video, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    { :url => "http://vimeo.com/41986271" }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -37,7 +37,7 @@ describe VideosController do
 
   describe "GET index" do
     it "assigns all videos as @videos" do
-      video = Video.create! valid_attributes
+      video = Factory(:video)
       get :index, {}, valid_session
       assigns(:videos).should eq([video])
     end
@@ -45,7 +45,7 @@ describe VideosController do
 
   describe "GET show" do
     it "assigns the requested video as @video" do
-      video = Video.create! valid_attributes
+      video = Factory(:video)
       get :show, {:id => video.to_param}, valid_session
       assigns(:video).should eq(video)
     end
@@ -60,13 +60,18 @@ describe VideosController do
 
   describe "GET edit" do
     it "assigns the requested video as @video" do
-      video = Video.create! valid_attributes
+      video = Factory(:video)
       get :edit, {:id => video.to_param}, valid_session
       assigns(:video).should eq(video)
     end
   end
 
   describe "POST create" do
+    before(:each) do
+      Video.any_instance.stub(:vimeo_details).and_return({ 
+        :title => "woot", :thumbnail => "http://b.vimeocdn.com/ts/265/869/265869885_1280.jpg", :duration => 32 
+      })
+    end
     describe "with valid params" do
       it "creates a new Video" do
         expect {
@@ -106,7 +111,7 @@ describe VideosController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested video" do
-        video = Video.create! valid_attributes
+        video = Factory(:video)
         # Assuming there are no other videos in the database, this
         # specifies that the Video created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -116,13 +121,16 @@ describe VideosController do
       end
 
       it "assigns the requested video as @video" do
-        video = Video.create! valid_attributes
+        video = Factory(:video)
         put :update, {:id => video.to_param, :video => valid_attributes}, valid_session
         assigns(:video).should eq(video)
       end
 
       it "redirects to the video" do
-        video = Video.create! valid_attributes
+        video = Factory(:video, :serial_number => "241986271")
+        Video.any_instance.stub(:vimeo_details).and_return({ 
+          :title => "woot", :thumbnail => "http://b.vimeocdn.com/ts/265/869/265869885_1280.jpg", :duration => 32 
+        })
         put :update, {:id => video.to_param, :video => valid_attributes}, valid_session
         response.should redirect_to(video)
       end
@@ -130,7 +138,7 @@ describe VideosController do
 
     describe "with invalid params" do
       it "assigns the video as @video" do
-        video = Video.create! valid_attributes
+        video = Factory(:video)
         # Trigger the behavior that occurs when invalid params are submitted
         Video.any_instance.stub(:save).and_return(false)
         put :update, {:id => video.to_param, :video => {}}, valid_session
@@ -138,7 +146,7 @@ describe VideosController do
       end
 
       it "re-renders the 'edit' template" do
-        video = Video.create! valid_attributes
+        video = Factory(:video)
         # Trigger the behavior that occurs when invalid params are submitted
         Video.any_instance.stub(:save).and_return(false)
         put :update, {:id => video.to_param, :video => {}}, valid_session
@@ -149,14 +157,14 @@ describe VideosController do
 
   describe "DELETE destroy" do
     it "destroys the requested video" do
-      video = Video.create! valid_attributes
+      video = Factory(:video)
       expect {
         delete :destroy, {:id => video.to_param}, valid_session
       }.to change(Video, :count).by(-1)
     end
 
     it "redirects to the videos list" do
-      video = Video.create! valid_attributes
+      video = Factory(:video)
       delete :destroy, {:id => video.to_param}, valid_session
       response.should redirect_to(videos_url)
     end
