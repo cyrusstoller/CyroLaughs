@@ -4,7 +4,7 @@
   <p>Please enter the email address you gave us when you registered and we'll send you a link so you can create a new password.</p>
 
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-    <%= devise_error_messages! %>
+    <%= render 'shared/error_messages', :object => f.object %>
 
     <p><%= f.label :email %>
     <%= f.text_field :email %></p>
