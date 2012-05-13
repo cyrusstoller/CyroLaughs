@@ -1,2 +1,2 @@
 server: rails s
-spork:  spork
+spork:  bundle exec spork
