@@ -36,6 +36,10 @@ class Video < ActiveRecord::Base
   has_many :views, :class_name => "SessionWatchHistory", :foreign_key => "video_id"
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   
+  def to_param
+    "#{self.hash_permalink_id}-#{serial_number}"
+  end
+  
   def v_id
     serial_number[1..-1]
   end
@@ -58,8 +62,8 @@ class Video < ActiveRecord::Base
   end
   
   def self.with_url(url)
-    url_components = URI.split(url)
     begin
+      url_components = URI.split(url)
       case url_components[2].downcase
       when "youtube.com", "www.youtube.com", "youtu.be", "www.youtu.be"
         service_id = APP_CONFIG["YouTube"]
@@ -140,7 +144,7 @@ class Video < ActiveRecord::Base
     meta_data = parser.parse(open("http://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/#{v_id}"))
     return {
       :title => meta_data["title"],
-      :thumbnail => meta_data["thumbnail"],
+      :thumbnail => meta_data["thumbnail_url"],
       :duration => meta_data["duration"]
     }
   end
