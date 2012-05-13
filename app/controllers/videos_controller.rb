@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   realm = "Are you a cyro laughs admin?"
   http_basic_authenticate_with :name => ENV["ADMIN_USER"], :password => ENV["ADMIN_PASSWORD"], :except => [:show, :new, :create, :rating], 
                                :realm => realm
-  # before_filter :make_admin_cookie, :except => [:show, :new, :create, :rating]
+  before_filter :make_admin_cookie, :except => [:show, :new, :create, :rating]
 
   helper_method :sort_column, :sort_direction
 
@@ -220,6 +220,12 @@ class VideosController < ApplicationController
     end
     
     redirect_to get_queued_video
+  end
+  
+  protected
+  
+  def make_admin_cookie
+    session[:admin] = "true"
   end
   
   private
