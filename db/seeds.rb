@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+initial_links = YAML.load_file("#{Rails.root.to_s}/db/seed_videos.yml")
+
+initial_links.each do |link|
+  v = Video.new(:url => link)
+  if v.save
+    puts "Added: #{link}"
+  else
+    puts "Failed to add: #{link}"
+  end
+end
