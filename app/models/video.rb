@@ -128,7 +128,7 @@ class Video < ActiveRecord::Base
   
   def youtube_details(v_id)
     meta_data = Nokogiri::HTML(open("http://gdata.youtube.com/feeds/api/videos/#{v_id}"))
-    if meta_data.search("noembed").empty?
+    unless meta_data.search("noembed").empty?
       return nil
     else
       return {
