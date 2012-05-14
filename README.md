@@ -26,6 +26,7 @@ $ bundle exec autotest
 ```
 $ heroku run rake db:create
 $ heroku run rake db:migrate
+$ heroku run rake db:seed
 $ heroku config:add GMAIL_ACCOUNT=XXX
 $ heroku config:add GMAIL_PASSWORD=XXX
 $ heroku config:add FACEBOOK_APP_ID=XXX
