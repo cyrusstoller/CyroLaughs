@@ -161,8 +161,9 @@ class ApplicationController < ActionController::Base
   private
   
   def set_current_offset(max_offset)
+    max_offset = max_offset.to_i
     return 0 if max_offset < 1
-    return Random.rand(max_num_offset).to_i
+    return Random.rand(max_offset).to_i
   end
   
 end
