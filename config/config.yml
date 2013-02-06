@@ -10,3 +10,9 @@ max_id: 2147483647
 
 worst_allowed:  -5
 newly_submitted: 3
+
+google_analytics:
+  development: UA-XXXXXXXX-X
+  test: UA-XXXXXXXX-Y
+  staging: UA-XXXXXXXX-Z
+  production: UA-38284101-1
