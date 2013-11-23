@@ -30,11 +30,12 @@ group :test, :development do
   gem 'ZenTest'
   gem 'spork'
   gem 'autotest'    
-  gem 'autotest-rails'                                                    
-  gem 'autotest-rails-pure'                                             
-  gem 'autotest-fsevent'                                                
+  gem 'autotest-rails'
+  gem 'autotest-rails-pure'
+  gem 'autotest-fsevent'
   gem 'autotest-growl'
-  gem 'annotate', '~> 2.4.1.beta' 
+  gem 'annotate', '~> 2.4.1.beta'
+  gem 'dotenv-rails'
 end
 
 # authentication
